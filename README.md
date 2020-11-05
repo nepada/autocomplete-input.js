@@ -1,7 +1,7 @@
 Client side of Autocomplete text input for Nette forms
 ======================================================
 
-[![Build Status](https://travis-ci.org/nepada/autocomplete-input.js.svg?branch=master)](https://travis-ci.org/nepada/autocomplete-input.js)
+[![Build Status](https://github.com/nepada/autocomplete-input.js/workflows/CI/badge.svg)](https://github.com/nepada/autocomplete-input.js/actions?query=workflow%3ACI+branch%3Amaster)
 [![Latest stable](https://img.shields.io/npm/v/@nepada/autocomplete-input.svg)](https://www.npmjs.com/package/@nepada/autocomplete-input)
 
 
