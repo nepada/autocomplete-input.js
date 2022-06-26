@@ -1,6 +1,7 @@
 {
     "name": "@nepada/autocomplete-input",
     "version": "1.0.0",
+    "type": "module",
     "description": "Client side of Autocomplete text input for Nette forms.",
     "keywords": [
         "autocomplete",
