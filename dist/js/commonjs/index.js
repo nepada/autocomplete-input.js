@@ -1,10 +1,8 @@
 'use strict';
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var $ = _interopDefault(require('jquery'));
+var $ = require('jquery');
 require('corejs-typeahead/dist/typeahead.jquery');
-var Bloodhound = _interopDefault(require('corejs-typeahead/dist/bloodhound'));
+var Bloodhound = require('corejs-typeahead/dist/bloodhound');
 
 function initializeInput(input) {
     const $input = $(input);
