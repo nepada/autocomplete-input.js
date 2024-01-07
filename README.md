@@ -51,6 +51,19 @@ initializeAutocompleteInput(Nette);
 Nette.initOnLoad();
 ```
 
-#### Styling
+#### Bootstrap 5 support
 
-There is no precompiled CSS available, but there is [_bootstrap4.scss](src/scss/_bootstrap4.scss) partial with styles for Bootstrap 4 based websites.
+- Include [_bootstrap5.scss](src/scss/_bootstrap5.scss) partial into your SCSS styles.
+- Use customized typeahead factory during JS initialization:
+```js
+import Nette from 'nette-forms';
+import {default as initializeAutocomplete, bootstrap5TypeaheadFactory} from '@nepada/autocomplete-input';
+
+initializeAutocomplete(Nette, bootstrap5TypeaheadFactory);
+Nette.initOnLoad();
+```
+
+#### Bootstrap 4 support
+
+- Include [_bootstrap4.scss](src/scss/_bootstrap4.scss) partial into your SCSS styles.
+

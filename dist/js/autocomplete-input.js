@@ -4,19 +4,19 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.Nette, global.jQuery, null, global.Bloodhound));
 })(this, (function (Nette, $, typeahead_jquery, Bloodhound) { 'use strict';
 
-    function initializeInput(input) {
+    function defaultTypeaheadFactory(input) {
+      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
       var $input = $(input);
-      if ($input.is('.tt-input, .tt-hint')) {
-        return;
-      }
       var autocompleteUrl = $input.data('autocompleteUrl');
       var autocompleteQueryPlaceholder = $input.data('autocompleteQueryPlaceholder') || '__QUERY_PLACEHOLDER__';
-      var autocompleteMinLength = $input.data('autocompleteMinLength') || 1;
-      $input.typeahead({
+      var autocompleteMinLength = $input.data('autocompleteMinLength');
+      $input.typeahead($.extend({
         highlight: true,
         autoselect: true,
+        minLength: 1
+      }, options, {
         minLength: autocompleteMinLength
-      }, {
+      }), {
         source: new Bloodhound({
           queryTokenizer: Bloodhound.tokenizers.whitespace,
           datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -26,17 +26,24 @@
           }
         })
       });
+      var $hint = $input.parent().find($input.data('ttTypeahead').selectors.hint);
+      // Remove marker data attribute to avoid re-initialization on hint input
+      $hint.removeAttr('data-autocomplete-url');
     }
-    function initializeForm(form) {
+    function initializeForm(form, typeaheadFactory) {
       $(form).find('input[data-autocomplete-url]').each(function (idx, input) {
-        initializeInput(input);
+        if (!$(input).data('ttTypeahead')) {
+          typeaheadFactory(input);
+        }
       });
     }
     function initializeAutocomplete(Nette) {
+      var typeaheadFactory = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      typeaheadFactory = typeaheadFactory || defaultTypeaheadFactory;
       // Initialize all forms on document ready
       $(function () {
         $('form').each(function (idx, form) {
-          initializeForm(form);
+          initializeForm(form, typeaheadFactory);
         });
       });
 
@@ -44,7 +51,7 @@
       var originalInitForm = Nette.initForm;
       Nette.initForm = function (form) {
         originalInitForm(form);
-        initializeForm(form);
+        initializeForm(form, typeaheadFactory);
       };
     }
 
