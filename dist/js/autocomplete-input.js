@@ -52,7 +52,7 @@
       // Tap into Nette.initForm() to provide AJAX snippet support via e.g. Naja
       var originalInitForm = Nette.initForm;
       Nette.initForm = form => {
-        originalInitForm(form);
+        originalInitForm.apply(Nette, [form]);
         initializeForm(form, typeaheadFactory);
       };
     }

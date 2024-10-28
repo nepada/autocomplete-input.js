@@ -97,7 +97,7 @@ function initializeAutocomplete(Nette, typeaheadFactory = null) {
     // Tap into Nette.initForm() to provide AJAX snippet support via e.g. Naja
     const originalInitForm = Nette.initForm;
     Nette.initForm = (form) => {
-        originalInitForm(form);
+        originalInitForm.apply(Nette, [form]);
         initializeForm(form, typeaheadFactory);
     };
 }
