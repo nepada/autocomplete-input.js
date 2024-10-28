@@ -35,6 +35,8 @@ function defaultTypeaheadFactory(input, options = {}) {
     const $hint = $input.parent().find($input.data('ttTypeahead').selectors.hint);
     // Remove marker data attribute to avoid re-initialization on hint input
     $hint.removeAttr('data-autocomplete-url');
+    // Remove validation rules from the hint fake input
+    $hint.removeAttr('data-nette-rules');
 }
 
 function bootstrap5TypeaheadFactory(input, options = {}) {

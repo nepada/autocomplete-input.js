@@ -29,9 +29,11 @@
       var $hint = $input.parent().find($input.data('ttTypeahead').selectors.hint);
       // Remove marker data attribute to avoid re-initialization on hint input
       $hint.removeAttr('data-autocomplete-url');
+      // Remove validation rules from the hint fake input
+      $hint.removeAttr('data-nette-rules');
     }
     function initializeForm(form, typeaheadFactory) {
-      $(form).find('input[data-autocomplete-url]').each(function (idx, input) {
+      $(form).find('input[data-autocomplete-url]').each((idx, input) => {
         if (!$(input).data('ttTypeahead')) {
           typeaheadFactory(input);
         }
@@ -41,15 +43,15 @@
       var typeaheadFactory = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       typeaheadFactory = typeaheadFactory || defaultTypeaheadFactory;
       // Initialize all forms on document ready
-      $(function () {
-        $('form').each(function (idx, form) {
+      $(() => {
+        $('form').each((idx, form) => {
           initializeForm(form, typeaheadFactory);
         });
       });
 
       // Tap into Nette.initForm() to provide AJAX snippet support via e.g. Naja
       var originalInitForm = Nette.initForm;
-      Nette.initForm = function (form) {
+      Nette.initForm = form => {
         originalInitForm(form);
         initializeForm(form, typeaheadFactory);
       };
