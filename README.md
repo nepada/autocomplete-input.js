@@ -14,17 +14,11 @@ Via npm:
 $ npm install @nepada/autocomplete-input --save
 ```
 
-Via yarn:
-
-```sh
-$ yarn add @nepada/autocomplete-input
-```
-
 
 Usage
 -----
 
-This package provides [corejs-typeahead](https://yarnpkg.com/package/corejs-typeahead) based client side for [nepada/autocomplete-input](https://packagist.org/packages/nepada/autocomplete-input).
+This package provides [corejs-typeahead](https://www.npmjs.com/package/corejs-typeahead) based client side for [nepada/autocomplete-input](https://packagist.org/packages/nepada/autocomplete-input).
 
 #### Using precompiled JS bundle
 
@@ -39,7 +33,7 @@ Using precompiled bundles is the quick'n'dirty way of getting client side valida
 
 #### Building your own JS bundle
 
-It is highly recommended to install the client side package via nmp/yarn and compile your own bundle.
+It is highly recommended to install the client side package via nmp and compile your own bundle.
 
 Here is an example script for initialization of phone number input and Nette forms.  
 
